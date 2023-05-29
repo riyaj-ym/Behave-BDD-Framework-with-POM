@@ -1,5 +1,3 @@
-from selenium.webdriver.common.by import By
-
 from features.PageObjectModel.AccountPage import AccountPage
 from features.PageObjectModel.BasePage import BasePage
 
@@ -15,16 +13,15 @@ class LoginPage(BasePage):
     No_match_for_email_address_and_or_Password_xpath = "//div[contains(@class,'alert')]"
 
     def enter_login_email(self, email):
-        self.driver.find_element(By.CSS_SELECTOR, self.textbox_email_css).send_keys(email)
+        self.type_into_field('textbox_email_css', self.textbox_email_css, email)
 
     def enter_login_password(self, password):
-        self.driver.find_element(By.CSS_SELECTOR, self.textbox_password_css).send_keys(password)
+        self.type_into_field('textbox_password_css', self.textbox_password_css, password)
 
     def click_login_button(self):
-        self.driver.find_element(By.XPATH, self.button_login_xpath).click()
+        self.click_on_element('button_login_xpath', self.button_login_xpath)
         return AccountPage(self.driver)
 
     def display_status_of_No_match_for_email_address_and_or_Password(self, expected_msg):
-        return self.driver.find_element(By.XPATH,
-                                        self.No_match_for_email_address_and_or_Password_xpath).text.__contains__(
-            expected_msg)
+        return self.retrieve_text_contains('No_match_for_email_address_and_or_Password_xpath',
+                                           self.No_match_for_email_address_and_or_Password_xpath, expected_msg)

@@ -11,4 +11,5 @@ class AccountPage(BasePage):
     edit_your_account_information_option_xpath = "//a[text()='Edit your account information']"
 
     def display_status_of_edit_your_account_information_option(self):
-        return self.driver.find_element(By.XPATH, self.edit_your_account_information_option_xpath).is_displayed()
+        return self.display_status('edit_your_account_information_option_xpath',
+                                   self.edit_your_account_information_option_xpath)

@@ -12,7 +12,7 @@ class SearchResultPage(BasePage):
     no_product_warning_xpath = '//input[@id="button-search"]/following-sibling::p'
 
     def display_status_of_valid_product(self):
-        return self.driver.find_element(By.LINK_TEXT, self.valid_product_link_text).is_displayed()
+        return self.display_status('valid_product_link_text', self.valid_product_link_text)
 
     def no_product_warning_message(self, expected_warning):
-        return self.driver.find_element(By.XPATH, self.no_product_warning_xpath).text.__eq__(expected_warning)
+        return self.retrieve_text_equals('no_product_warning_xpath', self.no_product_warning_xpath, expected_warning)

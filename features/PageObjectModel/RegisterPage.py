@@ -1,5 +1,3 @@
-from selenium.webdriver.common.by import By
-
 from features.PageObjectModel.AccountCreatedPage import AccountCreatedPage
 from features.PageObjectModel.BasePage import BasePage
 
@@ -28,59 +26,60 @@ class RegisterPage(BasePage):
     expected_password_warning_xpath = '//input[@name="password"]/following-sibling::div'
 
     def enter_firstname(self, firstname):
-        self.driver.find_element(By.XPATH, self.firstname_xpath).send_keys(firstname)
+        self.type_into_field('firstname_xpath', self.firstname_xpath, firstname)
 
     def enter_lastname(self, lastname):
-        self.driver.find_element(By.XPATH, self.lastname_xpath).send_keys(lastname)
+        self.type_into_field('lastname_xpath', self.lastname_xpath, lastname)
 
     def enter_email(self, email):
-        self.driver.find_element(By.XPATH, self.email_xpath).send_keys(email)
+        self.type_into_field('email_xpath', self.email_xpath, email)
 
     def enter_telephone(self, telephone):
-        self.driver.find_element(By.XPATH, self.telephone_xpath).send_keys(telephone)
+        self.type_into_field('telephone_xpath', self.telephone_xpath, telephone)
 
     def enter_password(self, password):
-        self.driver.find_element(By.XPATH, self.password_xpath).send_keys(password)
+        self.type_into_field('password_xpath', self.password_xpath, password)
 
     def enter_confirm_password(self, confirm_password):
-        self.driver.find_element(By.XPATH, self.confirm_password_xpath).send_keys(confirm_password)
+        self.type_into_field('confirm_password_xpath', self.confirm_password_xpath, confirm_password)
 
     def click_on_continue_button(self):
-        self.driver.find_element(By.XPATH, self.continue_button_xpath).click()
+        self.click_on_element('continue_button_xpath', self.continue_button_xpath)
         return AccountCreatedPage(self.driver)
 
     def select_newsletter_subscribe_yes_radio_button(self):
-        self.driver.find_element(By.XPATH, self.newsletter_subscribe_radio_button_xpath).click()
+        self.click_on_element('newsletter_subscribe_radio_button_xpath', self.newsletter_subscribe_radio_button_xpath)
 
     def display_existing_email_warning(self, expected_warning):
-        return self.driver.find_element(By.XPATH, self.existing_email_warning_xpath).text.__contains__(expected_warning)
+        return self.retrieve_text_contains('existing_email_warning_xpath', self.existing_email_warning_xpath,
+                                           expected_warning)
 
     def select_privacy_policy_checkbox(self):
-        self.driver.find_element(By.XPATH, self.privacy_policy_xpath).click()
+        self.click_on_element('privacy_policy_xpath', self.privacy_policy_xpath)
 
     def privacy_policy_warning(self, expected_privacy_policy_warning):
-        return self.driver.find_element(By.XPATH, self.expected_privacy_policy_warning_xpath).text.__eq__(
-            expected_privacy_policy_warning)
+        return self.retrieve_text_equals('expected_privacy_policy_warning_xpath',
+                                         self.expected_privacy_policy_warning_xpath, expected_privacy_policy_warning)
 
     def firstname_warning(self, expected_firstname_warning):
-        return self.driver.find_element(By.XPATH, self.expected_firstname_warning_xpath).text.__eq__(
-            expected_firstname_warning)
+        return self.retrieve_text_equals('expected_firstname_warning_xpath', self.expected_firstname_warning_xpath,
+                                         expected_firstname_warning)
 
     def lastname_warning(self, expected_lastname_warning):
-        return self.driver.find_element(By.XPATH, self.expected_lastname_warning_xpath).text.__eq__(
-            expected_lastname_warning)
+        return self.retrieve_text_equals('expected_lastname_warning_xpath', self.expected_lastname_warning_xpath,
+                                         expected_lastname_warning)
 
     def email_warning(self, expected_email_warning):
-        return self.driver.find_element(By.XPATH, self.expected_email_warning_xpath).text.__eq__(
-            expected_email_warning)
+        return self.retrieve_text_equals('expected_email_warning_xpath', self.expected_email_warning_xpath,
+                                         expected_email_warning)
 
     def telephone_warning(self, expected_telephone_warning):
-        return self.driver.find_element(By.XPATH, self.expected_telephone_warning_xpath).text.__eq__(
-            expected_telephone_warning)
+        return self.retrieve_text_equals('expected_telephone_warning_xpath', self.expected_telephone_warning_xpath,
+                                         expected_telephone_warning)
 
     def password_warning(self, expected_password_warning):
-        return self.driver.find_element(By.XPATH, self.expected_password_warning_xpath).text.__eq__(
-            expected_password_warning)
+        return self.retrieve_text_equals('expected_password_warning_xpath', self.expected_password_warning_xpath,
+                                         expected_password_warning)
 
     def all_warning_status(self, expected_privacy_policy_warning,
                            expected_firstname_warning,

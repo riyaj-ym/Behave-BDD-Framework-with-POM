@@ -15,6 +15,18 @@ class BasePage:
         element.clear()
         element.send_keys(text)
 
+    def retrieve_text_contains(self, locator_type, locator_value, expected):
+        element = self.get_element(locator_type, locator_value)
+        return element.text.__contains__(expected)
+
+    def retrieve_text_equals(self, locator_type, locator_value, expected):
+        element = self.get_element(locator_type, locator_value)
+        return element.text.__eq__(expected)
+
+    def display_status(self, locator_type, locator_value):
+        element = self.get_element(locator_type, locator_value)
+        return element.is_displayed()
+
     def get_element(self, locator_type, locator_value):
         element = None
         if locator_type.endswith('_id'):

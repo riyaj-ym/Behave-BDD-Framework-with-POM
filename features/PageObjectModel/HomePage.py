@@ -1,5 +1,3 @@
-from selenium.webdriver.common.by import By
-
 from features.PageObjectModel.BasePage import BasePage
 from features.PageObjectModel.LoginPage import LoginPage
 from features.PageObjectModel.RegisterPage import RegisterPage
@@ -18,22 +16,22 @@ class HomePage(BasePage):
     register_link_text = 'Register'
 
     def click_on_my_account(self):
-        self.driver.find_element(By.XPATH, self.my_account_xpath).click()
+        self.click_on_element('my_account_xpath', self.my_account_xpath)
 
     def click_on_login(self):
-        self.driver.find_element(By.LINK_TEXT, self.login_link_text).click()
+        self.click_on_element('login_link_text', self.login_link_text)
         return LoginPage(self.driver)
 
     def verify_home_page_title(self, exp_title):
         return self.driver.title.__eq__(exp_title)
 
     def enter_product_into_search_field(self, product):
-        self.driver.find_element(By.NAME, self.search_box_name).send_keys(product)
+        self.type_into_field('search_box_name', self.search_box_name, product)
 
     def click_search_button(self):
-        self.driver.find_element(By.CSS_SELECTOR, self.search_button_css).click()
+        self.click_on_element('search_button_css', self.search_button_css)
         return SearchResultPage(self.driver)
 
     def click_on_register(self):
-        self.driver.find_element(By.LINK_TEXT, self.register_link_text).click()
+        self.click_on_element('register_link_text', self.register_link_text)
         return RegisterPage(self.driver)
