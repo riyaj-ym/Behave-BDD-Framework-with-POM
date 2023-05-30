@@ -24,7 +24,7 @@ def step_impl(context):
     assert context.search_result_page.display_status_of_valid_product()
 
 
-@when(u'I enter invalid product say "product" into Search box field')
+@when(u'I enter invalid product say "{product}" into Search box field')
 def step_impl(context, product):
     context.home_page.enter_product_into_search_field(product)
 
