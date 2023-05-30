@@ -1,9 +1,6 @@
 import random
 import string
 from behave import *
-from selenium.webdriver.common.by import By
-
-from features.PageObjectModel.AccountCreatedPage import AccountCreatedPage
 from features.PageObjectModel.HomePage import HomePage
 from features.PageObjectModel.RegisterPage import RegisterPage
 
@@ -20,12 +17,13 @@ def step_impl(context):
     firstname = name(6)
     lastname = name(4)
     email = name(5) + "123@gmail.com"
-    context.register_page.enter_firstname(firstname)
-    context.register_page.enter_lastname(lastname)
-    context.register_page.enter_email(email)
-    context.register_page.enter_telephone('1234')
-    context.register_page.enter_password('abc123')
-    context.register_page.enter_confirm_password('abc123')
+    for r in context.table:
+        context.register_page.enter_firstname(firstname)
+        context.register_page.enter_lastname(lastname)
+        context.register_page.enter_email(email)
+        context.register_page.enter_telephone(r["telephone"])
+        context.register_page.enter_password(r["password"])
+        context.register_page.enter_confirm_password(r["password"])
 
 
 @when(u'I click on continue button')

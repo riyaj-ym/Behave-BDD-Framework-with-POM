@@ -4,6 +4,9 @@ Feature: Register Account functionality
   Scenario: Register with mandatory fields
     Given I navigate to Register page
     When I enter details into mandatory fields
+      | telephone | password |
+      | 1234      | abc123   |
+
     And I select privacy policy checkbox
     And I click on continue button
     Then Account should get created

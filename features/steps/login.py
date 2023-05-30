@@ -1,11 +1,7 @@
 import random
 import string
 from behave import *
-from selenium.webdriver.common.by import By
-
-from features.PageObjectModel.AccountPage import AccountPage
 from features.PageObjectModel.HomePage import HomePage
-from features.PageObjectModel.LoginPage import LoginPage
 
 
 @given(u'I navigated to Login page')
@@ -15,10 +11,10 @@ def step_impl(context):
     context.login_page = context.home_page.click_on_login()
 
 
-@when(u'I enter valid email and valid password into the fields')
-def step_impl(context):
-    context.login_page.enter_login_email('xofeger221@cutefier.com')
-    context.login_page.enter_login_password('yFkp58tn6U@s')
+@when(u'I enter valid email say "{email}" and valid password say "{password}" into the fields')
+def step_impl(context, email, password):
+    context.login_page.enter_login_email(email)
+    context.login_page.enter_login_password(password)
 
 
 @when(u'I clicked on Login button')

@@ -1,9 +1,5 @@
-import time
 from behave import *
-from selenium.webdriver.common.by import By
-
 from features.PageObjectModel.HomePage import HomePage
-from features.PageObjectModel.SearchResultPage import SearchResultPage
 
 
 @given(u'I got navigated to Home page')
@@ -13,9 +9,9 @@ def step_impl(context):
     assert context.home_page.verify_home_page_title(exp_title)
 
 
-@when(u'I enter valid product into Search box field')
-def step_impl(context):
-    context.home_page.enter_product_into_search_field('Hp')
+@when(u'I enter valid product say "{product}" into Search box field')
+def step_impl(context, product):
+    context.home_page.enter_product_into_search_field(product)
 
 
 @when(u'I click on Search button')
@@ -28,9 +24,9 @@ def step_impl(context):
     assert context.search_result_page.display_status_of_valid_product()
 
 
-@when(u'I enter invalid product into Search box field')
-def step_impl(context):
-    context.home_page.enter_product_into_search_field("Honda")
+@when(u'I enter invalid product say "product" into Search box field')
+def step_impl(context, product):
+    context.home_page.enter_product_into_search_field(product)
 
 
 @then(u'Proper message should be displayed in Search results')
